@@ -6,16 +6,20 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
 import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    // * Configurar variables de entorno
+    ConfigModule.forRoot(),
+
     // * Servir contenido estatico
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public')
     }),
 
     // * Usar mongodb
-    MongooseModule.forRoot('mongodb://localhost:27017/nest-pokemon'),
+    MongooseModule.forRoot(process.env.MONGODB),
 
     // * Importar modulo de pokemon
     PokemonModule,
