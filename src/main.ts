@@ -9,6 +9,11 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
+    transform: true,
+    // Transformaciond de datos de los query params a tipo de dato
+    transformOptions: {
+      enableImplicitConversion: true
+    }
     // forbidNonWhitelisted: true
   }));
 

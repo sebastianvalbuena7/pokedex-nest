@@ -4,6 +4,8 @@ import { join } from 'path';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CommonModule } from './common/common.module';
+import { SeedModule } from './seed/seed.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -18,7 +20,11 @@ import { CommonModule } from './common/common.module';
     // * Importar modulo de pokemon
     PokemonModule,
 
-    CommonModule
+    CommonModule,
+
+    SeedModule,
+
+    HttpModule
   ]
 })
 export class AppModule { }
