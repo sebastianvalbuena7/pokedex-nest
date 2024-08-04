@@ -7,11 +7,16 @@ import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { EnvConfiguration } from './config/app.config';
+import { JoiValidationSchema } from './config/joi.validation';
 
 @Module({
   imports: [
     // * Configurar variables de entorno
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [EnvConfiguration],
+      validationSchema: JoiValidationSchema
+    }),
 
     // * Servir contenido estatico
     ServeStaticModule.forRoot({
